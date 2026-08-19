@@ -1,23 +1,24 @@
-# Submeta Aí — Case Study
+# Submeta.AI — Case Study
 
-**Plataforma com IA para apoiar pesquisadores antes da submissão de artigos científicos.**
+**Inteligência para Submissão Científica.**
 
-O **Submeta Aí** é um produto digital em desenvolvimento voltado à análise pré-submissão de artigos acadêmicos. A proposta é ajudar pesquisadores a verificar aderência às diretrizes de periódicos, escopo editorial, padrões de publicação e pontos de melhoria antes do envio do manuscrito.
+O **Submeta.AI** é uma plataforma SaaS em desenvolvimento para apoiar pesquisadores antes da submissão de artigos científicos. A proposta é analisar a aderência de um manuscrito ao periódico escolhido, considerando diretrizes editoriais, foco e escopo, normas para autores e padrões observáveis nas publicações recentes.
 
-Este repositório não contém o código-fonte privado da plataforma. Ele documenta a proposta do produto, problema, solução, arquitetura conceitual, modelo de negócio e competências demonstradas.
+Este repositório documenta o produto, suas decisões de arquitetura, regras de privacidade, modelo de negócio e instruções para implementação pelo Codex. Ele não deve conter segredos, chaves de API, e-mails sensíveis, manuscritos ou código proprietário exposto indevidamente.
 
 ---
 
 ## Resumo executivo
 
-O Submeta Aí atua como uma camada de inteligência editorial antes da submissão científica.
+O Submeta.AI atua como uma camada de inteligência editorial antes da submissão científica.
 
-A plataforma busca reduzir erros formais, desalinhamento com escopo de revistas, inconsistências de formatação e problemas de aderência às normas editoriais.
+A plataforma busca reduzir erros formais, desalinhamento com escopo de revistas, inconsistências de estrutura, lacunas metodológicas aparentes e problemas de aderência às normas editoriais.
 
-**Tipo:** SaaS acadêmico / produto com IA  
-**Status:** em desenvolvimento  
-**Stack prevista:** aplicação web, APIs de IA, análise de páginas de periódicos, upload de manuscritos e geração de relatórios  
-**Modelo de negócio:** freemium, relatórios pagos e análises avançadas
+**Tipo:** SaaS acadêmico com IA  
+**Mercado inicial:** Brasil  
+**Posicionamento:** avaliação editorial inteligente para artigos científicos antes da submissão  
+**Modelo:** freemium com relatório completo pago e versão ajustada opcional  
+**Privacidade:** processamento temporário, sem armazenamento permanente do manuscrito
 
 ---
 
@@ -35,38 +36,190 @@ Isso pode gerar:
 - perda de tempo no processo editorial;
 - retrabalho antes de nova submissão.
 
-O problema é especialmente relevante para pesquisadores iniciantes, pós-graduandos e autores que submetem para periódicos com diretrizes extensas.
+O problema é especialmente relevante para pesquisadores iniciantes, pós-graduandos, grupos de pesquisa e autores que submetem para periódicos com diretrizes extensas.
 
 ---
 
 ## Solução
 
-O Submeta Aí propõe uma plataforma capaz de:
+O Submeta.AI propõe uma plataforma capaz de:
 
-1. acessar ou receber informações sobre o periódico;
-2. analisar diretrizes para autores;
-3. identificar padrões de publicações recentes;
-4. receber o manuscrito do usuário;
-5. comparar artigo, escopo e normas editoriais;
-6. gerar relatório de aderência;
-7. indicar pontos fortes, fragilidades e ajustes prioritários;
-8. oferecer uma versão gratuita básica e relatórios pagos mais completos.
+1. permitir que o usuário selecione ou informe o periódico;
+2. acessar a página oficial do periódico;
+3. localizar foco e escopo, diretrizes aos autores e normas de submissão;
+4. observar padrões básicos ou avançados de publicações recentes;
+5. receber o manuscrito do usuário;
+6. comparar artigo, escopo e normas editoriais;
+7. gerar diagnóstico preliminar gratuito;
+8. oferecer relatório completo pago;
+9. oferecer versão editorialmente ajustada no plano avançado;
+10. excluir arquivos e conteúdo temporário após a entrega.
 
 ---
 
-## Funcionalidades previstas
+## Regra central da avaliação gratuita
 
-- Busca ou indicação do periódico
-- Leitura das diretrizes para autores
-- Análise de escopo editorial
-- Verificação de estrutura do manuscrito
-- Avaliação de aderência formal
-- Comparação com padrões de publicações recentes
-- Upload de artigo
-- Relatório básico gratuito
-- Relatório completo pago
-- Recomendações objetivas de melhoria
-- Política de privacidade com descarte do arquivo após análise
+A avaliação gratuita **não é fictícia** e **não deve ser genérica**.
+
+Ela deve combinar:
+
+```text
+perfil editorial básico real do periódico
++
+pacote reduzido do manuscrito
++
+API free/free-tier
+=
+pré-avaliação editorial gratuita
+```
+
+A versão gratuita deve consultar o periódico selecionado antes de avaliar o manuscrito. O sistema deve tentar obter:
+
+- página oficial do periódico;
+- foco e escopo;
+- diretrizes aos autores;
+- normas de submissão;
+- tipos de artigo aceitos;
+- política de avaliação, quando disponível;
+- exigências formais;
+- publicações recentes;
+- padrões básicos dos artigos publicados.
+
+Por privacidade e custo, a avaliação gratuita **não deve enviar o manuscrito completo** para API free/free-tier. Ela deve usar apenas um pacote reduzido com título, resumo, palavras-chave, nomes das seções, contagens, presença ou ausência de elementos obrigatórios e trechos mínimos quando estritamente necessário.
+
+---
+
+## Diferença entre gratuito e pago
+
+| Item | Gratuito | Pago |
+|---|---|---|
+| Acessa o periódico | Sim | Sim |
+| Lê diretrizes | Sim, nível básico | Sim, nível completo |
+| Analisa publicações recentes | Padrões básicos | Padrões mais profundos |
+| Envia manuscrito inteiro para IA | Não | Sim, dentro do limite contratado |
+| Usa API free/free-tier | Sim | Não |
+| Usa API paga | Não | Sim |
+| Gera nota estimada | Sim | Sim |
+| Gera plano detalhado | Não | Sim |
+| Gera versão ajustada | Não | Apenas no plano correspondente |
+
+---
+
+## Produtos iniciais
+
+### Diagnóstico gratuito
+
+Entrega uma pré-avaliação com:
+
+- nota atual estimada;
+- nota potencial após ajustes;
+- risco geral de rejeição;
+- notas por grandes áreas;
+- três a cinco principais riscos;
+- recomendação preliminar;
+- convite para relatório completo.
+
+### Relatório completo
+
+Preço promocional de lançamento: **R$ 49,99**.
+
+Inclui análise aprofundada do manuscrito dentro do limite contratado, comparação com o perfil editorial completo do periódico, riscos de rejeição, checklist e recomendações priorizadas.
+
+### Relatório completo + versão ajustada
+
+Preço promocional de lançamento: **R$ 99,99**.
+
+Inclui o relatório completo e uma versão editorialmente ajustada das seções críticas, sem criar dados, resultados ou referências inexistentes.
+
+### Ajuste posterior
+
+Caso o usuário compre apenas o relatório completo e depois queira a versão ajustada, o valor será **R$ 129,99** e o manuscrito deverá ser reenviado, porque o conteúdo é excluído após a entrega.
+
+---
+
+## Pagamento
+
+Para o lançamento no Brasil, o gateway principal recomendado é o **Mercado Pago**, por melhor aderência a Pix e cartão nacional.
+
+O PayPal pode ficar como integração futura ou secundária para expansão internacional.
+
+A implementação deve usar uma abstração de pagamento, permitindo trocar ou adicionar provedores depois:
+
+```text
+PaymentProvider
+  ├─ MercadoPagoProvider
+  └─ PayPalProvider futuro
+```
+
+---
+
+## Acesso interno autorizado
+
+O projeto deve permitir um fluxo interno de teste e operação sem cobrança para e-mails autorizados.
+
+Essa regra **não deve ser implementada como cupom público** e **não deve expor e-mails reais no código-fonte**.
+
+O fluxo esperado é:
+
+```text
+Usuário informa e-mail
+↓
+Sistema normaliza o e-mail
+↓
+Sistema calcula hash/HMAC do e-mail
+↓
+Sistema compara com allowlist configurada em GitHub Secrets / variáveis seguras
+↓
+Se autorizado, exige código por e-mail em produção
+↓
+Após verificação, pula checkout
+↓
+Gera relatório completo sem cobrança
+↓
+Envia PDF para o e-mail autorizado
+↓
+Exclui manuscrito, texto extraído, prompts e arquivos temporários
+```
+
+Em ambiente de desenvolvimento, o bypass pode ser liberado diretamente. Em produção, deve exigir código enviado ao próprio e-mail autorizado para evitar abuso.
+
+Detalhes técnicos estão em [`docs/internal-free-access.md`](docs/internal-free-access.md).
+
+---
+
+## GitHub Secrets e dados sensíveis
+
+Nenhuma informação sensível deve ser commitada no repositório.
+
+Devem ser configurados como GitHub Secrets ou variáveis seguras do ambiente de deploy:
+
+- chaves de IA;
+- tokens do Mercado Pago;
+- segredos de hash e criptografia;
+- credenciais de e-mail transacional;
+- allowlist de acesso interno;
+- URL de banco de dados;
+- URL do Redis;
+- segredos de webhook.
+
+A lista de secrets esperados está em [`docs/github-secrets.md`](docs/github-secrets.md).
+
+---
+
+## Privacidade
+
+Como o produto lida com manuscritos acadêmicos, a política de dados é parte central do projeto.
+
+Diretrizes obrigatórias:
+
+- não armazenar manuscritos permanentemente;
+- evitar acesso humano ao conteúdo;
+- não registrar texto do artigo em logs;
+- não salvar prompts contendo conteúdo do manuscrito;
+- excluir arquivos após download ou envio por e-mail;
+- informar claramente os limites da análise;
+- não prometer aceite em periódico;
+- tratar a IA como apoio, não como decisão editorial.
 
 ---
 
@@ -75,154 +228,61 @@ O Submeta Aí propõe uma plataforma capaz de:
 ```text
 Usuário
   ↓
-Upload do manuscrito ou formulário de análise
+Busca/seleção do periódico
   ↓
-Identificação do periódico
+Coleta de diretrizes e publicações recentes
   ↓
-Coleta das diretrizes editoriais
+Geração de perfil editorial básico ou completo
   ↓
-Análise de escopo e padrões de publicação
+Upload do manuscrito
   ↓
-Processamento por IA
+Extração temporária do texto
   ↓
-Geração de relatório
+Diagnóstico gratuito ou relatório pago
   ↓
-Versão gratuita ou relatório pago
+Pagamento ou bypass interno autorizado
+  ↓
+Geração do relatório
+  ↓
+Download único ou envio por e-mail
+  ↓
+Exclusão automática do conteúdo temporário
 ```
 
 ---
 
-## Modelo de produto
+## Stack prevista
 
-### Versão gratuita
-
-A versão gratuita deve oferecer uma análise básica, útil e limitada, com foco em:
-
-- escopo geral;
-- estrutura mínima;
-- principais riscos de submissão;
-- pontos formais mais evidentes;
-- indicação de necessidade de análise completa.
-
-### Versão paga
-
-A versão paga pode aprofundar:
-
-- aderência às normas;
-- comparação com artigos publicados;
-- linguagem acadêmica;
-- estrutura argumentativa;
-- resumo, palavras-chave e referências;
-- checklist editorial;
-- recomendações priorizadas.
-
----
-
-## Diferencial
-
-O Submeta Aí não deve ser apenas um corretor de texto.
-
-A proposta é combinar:
-
-- análise do manuscrito;
-- análise do periódico;
-- leitura das diretrizes;
-- padrões de publicação;
-- inteligência editorial;
-- recomendações acionáveis.
-
-O foco é aumentar a qualidade da submissão antes que o artigo entre no fluxo editorial.
-
----
-
-## Cuidados de privacidade
-
-Como o produto lida com manuscritos acadêmicos, a política de dados é parte central do projeto.
-
-Diretrizes previstas:
-
-- não armazenar manuscritos de forma persistente;
-- remover arquivos após a geração do relatório;
-- evitar acesso humano ao conteúdo;
-- informar claramente os limites da análise;
-- não prometer aceite em periódico;
-- tratar a IA como apoio, não como decisão editorial.
-
----
-
-## Stack conceitual
-
-| Camada | Possibilidades |
+| Camada | Decisão inicial |
 |---|---|
-| Frontend | Aplicação web responsiva |
-| Backend | API para processamento dos documentos |
-| IA | Modelos via API para análise textual e editorial |
-| Dados externos | Páginas de periódicos, diretrizes e publicações recentes |
-| Pagamento | Integração com gateway de pagamento |
-| Relatórios | PDF, HTML ou painel web |
-| Privacidade | Descarte automático e controle de retenção |
+| Frontend | Next.js, React, Tailwind, shadcn/ui |
+| Backend | API web para jobs, pagamentos e downloads |
+| Worker | Python com Redis/RQ |
+| Banco | PostgreSQL / Supabase |
+| Fila | Redis |
+| IA gratuita | API free/free-tier com pacote reduzido |
+| IA paga | API paga com maior controle e qualidade |
+| Pagamento | Mercado Pago no Brasil |
+| E-mail | Resend, Brevo, SendGrid ou SES |
+| Armazenamento | Temporário, privado e criptografado |
+| Segurança | hashes, secrets, webhooks, deleção automática |
 
 ---
 
-## Modelo de negócio
-
-O modelo inicial pode combinar:
-
-- análise gratuita limitada;
-- relatório intermediário pago;
-- relatório completo pago;
-- upgrade de relatório;
-- planos futuros para grupos de pesquisa, programas de pós-graduação ou instituições.
-
-Exemplo de estrutura:
-
-```text
-Free → análise básica
-Pago 1 → relatório editorial objetivo
-Pago 2 → relatório completo com comparação e recomendações avançadas
-```
-
----
-
-## O que este projeto demonstra
-
-Este case demonstra competências em:
-
-- desenho de produto SaaS;
-- aplicação de IA a problemas acadêmicos reais;
-- análise de mercado científico;
-- estruturação de modelo freemium;
-- automação de leitura editorial;
-- UX para pesquisadores;
-- integração com APIs;
-- preocupação com privacidade;
-- monetização de produto digital;
-- visão estratégica para nicho acadêmico.
-
----
-
-## Roadmap
-
-### MVP
+## Roadmap do MVP
 
 - Landing page
-- Formulário de indicação do periódico
-- Upload de manuscrito
-- Análise básica gratuita
-- Geração de relatório
-- Limite de palavras
+- Busca de periódico
+- Perfil editorial básico real
+- Upload seguro de manuscrito
+- Diagnóstico gratuito não genérico
+- Relatório completo pago
+- Checkout Mercado Pago
+- Download único
+- Acesso interno autorizado por secret
+- Envio automático de PDF para e-mail autorizado
+- Exclusão automática dos arquivos temporários
 - Política de privacidade clara
-
-### Próximas etapas
-
-- Integração com pagamento
-- Versão paga intermediária
-- Versão paga completa
-- Histórico local temporário de relatório
-- Expansão para diferentes periódicos
-- Internacionalização futura
-- Painel de análise para pesquisadores
-- API interna para classificação editorial
 
 ---
 
@@ -238,7 +298,7 @@ Ela atua como apoio pré-submissão e pode indicar riscos, inconsistências e po
 
 Projeto privado em desenvolvimento.
 
-Este repositório público funciona como documentação profissional do case, sem exposição do código-fonte.
+Este repositório público funciona como documentação profissional do case e guia de implementação, sem exposição de segredos ou código-fonte sensível.
 
 ---
 
